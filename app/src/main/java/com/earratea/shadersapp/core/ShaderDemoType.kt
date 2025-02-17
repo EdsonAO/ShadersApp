@@ -6,4 +6,5 @@ import androidx.compose.runtime.Stable
 enum class ShaderDemoType {
     Basic,
     Text,
+    Image,
 }
