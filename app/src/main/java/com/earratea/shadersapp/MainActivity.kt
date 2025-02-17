@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ShadersAppTheme {
-                ShaderScreen(initialDemo = ShaderDemoType.Image)
+                ShaderScreen(initialDemo = ShaderDemoType.Basic)
             }
         }
     }

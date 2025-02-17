@@ -7,4 +7,5 @@ enum class ShaderDemoType {
     Basic,
     Text,
     Image,
+    Complex,
 }

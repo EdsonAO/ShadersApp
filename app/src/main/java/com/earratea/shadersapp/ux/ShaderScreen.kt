@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEach
 import com.earratea.shadersapp.core.ShaderDemoType
 import com.earratea.shadersapp.ui.theme.ShadersAppTheme
+import com.earratea.shadersapp.ux.complex.ComplexDemo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -91,6 +92,7 @@ private fun ShaderContent(
                 ShaderDemoType.Basic -> BasicDemo()
                 ShaderDemoType.Text -> TextDemo()
                 ShaderDemoType.Image -> ImageDemo()
+                ShaderDemoType.Complex -> ComplexDemo()
             }
         }
     }
