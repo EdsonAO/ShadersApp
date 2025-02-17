@@ -32,19 +32,25 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun ShaderScreen() {
+fun ShaderScreen(
+    initialDemo: ShaderDemoType = ShaderDemoType.Basic,
+) {
     ShaderContent(
+        initialDemo = initialDemo,
         modifier = Modifier
             .fillMaxSize()
     )
 }
 
 @Composable
-private fun ShaderContent(modifier: Modifier = Modifier) {
+private fun ShaderContent(
+    initialDemo: ShaderDemoType,
+    modifier: Modifier = Modifier,
+) {
     val scope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     var selectedDemo by remember {
-        mutableStateOf(ShaderDemoType.Basic)
+        mutableStateOf(initialDemo)
     }
 
     ModalNavigationDrawer(
@@ -85,11 +91,7 @@ private fun ShaderContent(modifier: Modifier = Modifier) {
         ) {
             when (selectedDemo) {
                 ShaderDemoType.Basic -> BasicDemo()
-                ShaderDemoType.Text -> Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color.Green)
-                )
+                ShaderDemoType.Text -> TextDemo()
             }
         }
     }
@@ -99,6 +101,6 @@ private fun ShaderContent(modifier: Modifier = Modifier) {
 @Composable
 private fun ShaderScreenPreview() {
     ShadersAppTheme {
-        ShaderContent()
+        ShaderContent(initialDemo = ShaderDemoType.Basic)
     }
 }
