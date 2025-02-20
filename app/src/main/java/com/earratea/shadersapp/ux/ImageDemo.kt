@@ -21,6 +21,7 @@ import org.intellij.lang.annotations.Language
 @Language("AGSL")
 private val ImageShader = """
     uniform float2 size;
+    uniform float time;
     uniform shader composable;
     
     half4 main(in float2 fragCoord) {
@@ -34,8 +35,6 @@ private val AquaShader = """
     uniform float time;
     uniform shader composable;
     
-    
-    
     half4 main(in float2 fragCoord) {
         float scale = 1 / size.x;
         float2 scaledCoord = fragCoord * scale;
@@ -46,8 +45,9 @@ private val AquaShader = """
         float2 offset = sin * dir;
         float2 textureCoord = scaledCoord + offset / 30;
         
+        return half4(float3(dist), 1.0);
         //return half4(offset.xy, 0.0, 1.0);
-        return composable.eval(textureCoord / scale);
+        //return composable.eval(textureCoord / scale);
     }
 """
 
@@ -61,7 +61,7 @@ fun ImageDemo() {
 
 @Composable
 private fun ImageDemoContent(modifier: Modifier = Modifier) {
-    val agslShader = rememberAgslShader(AquaShader)
+    val agslShader = rememberAgslShader(ImageShader)
     val time by produceState(0f) {
         while (true) {
             withInfiniteAnimationFrameMillis {
